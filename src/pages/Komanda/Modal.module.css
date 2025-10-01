@@ -1,0 +1,364 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  width: 600px;
+  max-width: 90%;
+  background: #0d121c;
+  border: 1px solid #1a2a47;
+  border-radius: 12px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* --- Close button --- */
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: 1px solid #334257;
+  border-radius: 4px;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+.closeButton:hover {
+  opacity: 1;
+}
+.closeButton svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  color: #fff;
+}
+
+/* --- Content --- */
+.modalContent {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-family: 'Space Grotesk', sans-serif; /* Замени на свой шрифт */
+  color: #0027ff;
+}
+
+.formSection {
+  border: 0.5px solid #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-size: 14px;
+  color: #fff;
+  opacity: 0.7;
+  margin-bottom: 5px;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 12px 15px;
+  background: #151a24;
+  border: 0.5px solid #ffffff;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #5f9fff;
+  outline: none;
+  box-shadow: 0 0 8px rgba(95, 159, 255, 0.5);
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* --- Recaptcha --- */
+.recaptchaPlaceholder {
+  background: #151a24;
+  border: 0.5px solid #ffffff;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.recaptcha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.robotCheckbox {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.recaptchaLabel {
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+}
+
+.captchaLogoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 32px;
+  border: 0.5px solid #3b4c6e;
+  border-radius: 4px;
+  position: relative;
+}
+
+.captchaLogoText {
+  font-size: 10px;
+  color: #5f9fff;
+  margin-left: 5px;
+}
+
+/* --- Submit button --- */
+.submitButton {
+  width: 100%;
+  padding: 15px;
+  background: #0027ff;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 20px;
+}
+.submitButton:hover {
+  background: #001fcc;
+}
+.submitButton:disabled {
+  background: #334257;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* --- Agreement --- */
+.agreementText {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  margin-top: 20px;
+  line-height: 1.5;
+}
+.agreementLink {
+  color: #5f9fff;
+  text-decoration: none;
+}
+.agreementLink:hover {
+  color: #0027ff;
+  text-decoration: underline;
+}
+
+/* --- Responsive --- */
+@media (max-width: 800px) {
+  .modal {
+    width: 80%;
+    margin: 5vh auto;
+  }
+  .formSection {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 550px) {
+  .modal {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+  }
+  .modalContent {
+    padding: 20px;
+  }
+  .closeButton {
+    top: 10px;
+    right: 10px;
+  }
+  .formSection {
+    padding: 15px;
+  }
+}
+
+/* ===================== */
+/* АДАПТИВ */
+/* ===================== */
+
+/* Очень широкие экраны */
+@media (min-width: 1920px) {
+  .modal {
+    width: 800px;
+    max-width: 80%;
+  }
+  .modalContent {
+    padding: 50px;
+  }
+  .sectionTitle {
+    font-size: 28px;
+  }
+}
+
+/* Средние десктопы 1440px */
+@media (max-width: 1440px) {
+  .modal {
+    width: 700px;
+    max-width: 85%;
+  }
+  .modalContent {
+    padding: 45px;
+  }
+  .sectionTitle {
+    font-size: 26px;
+  }
+}
+
+/* Лаптопы и небольшие десктопы 1024px */
+@media (max-width: 1024px) {
+  .modal {
+    width: 600px;
+    max-width: 85%;
+  }
+  .modalContent {
+    padding: 40px;
+  }
+  .sectionTitle {
+    font-size: 24px;
+  }
+}
+
+/* Планшеты 800px и меньше */
+@media (max-width: 800px) {
+  .modal {
+    width: 80%;
+    margin: 5vh auto;
+  }
+  .modalContent {
+    padding: 30px;
+  }
+  .formSection {
+    padding: 20px;
+  }
+  .sectionTitle {
+    font-size: 22px;
+  }
+}
+
+/* Мобильные телефоны 550px и меньше */
+@media (max-width: 550px) {
+  .modal {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+  }
+  .modalContent {
+    padding: 20px;
+  }
+  .closeButton {
+    top: 10px;
+    right: 10px;
+  }
+  .formSection {
+    padding: 15px;
+  }
+  .sectionTitle {
+    font-size: 20px;
+  }
+  .submitButton {
+    font-size: 14px;
+    padding: 12px;
+  }
+  .captchaLogoContainer {
+    width: 70px;
+    height: 28px;
+  }
+  .captchaLogoText {
+    font-size: 9px;
+  }
+}
+
+/* Очень маленькие экраны 400px и меньше */
+@media (max-width: 400px) {
+  .modalContent {
+    padding: 15px;
+  }
+  .sectionTitle {
+    font-size: 18px;
+  }
+  .input,
+  .textarea {
+    font-size: 14px;
+    padding: 10px;
+  }
+  .submitButton {
+    font-size: 13px;
+    padding: 10px;
+  }
+  .captchaLogoContainer {
+    width: 60px;
+    height: 26px;
+  }
+  .captchaLogoText {
+    font-size: 8px;
+  }
+}

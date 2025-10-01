@@ -1,0 +1,274 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* ✅ Используем Grid для центрирования */
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.videoContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px; /* вместо огромного 68px */
+  padding: 0; /* убираем padding-top: 100px */
+}
+
+/* ... Остальные стили */
+.logo {
+  font-family: 'Jura', sans-serif;
+  font-size: 20rem;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: -10px;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.textWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.textMain {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.textReplay {
+  font-family: 'Jura', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+.line {
+  height: 1px;
+  width: 800px;
+  background-color: #fff;
+  opacity: 0.5;
+}
+
+.ctaButton {
+  font-family: 'Space Grotesk', sans-serif;
+  padding: 15px 30px;
+  background-color: transparent;
+  border: 1px solid #0027ff;
+  color: #fff;
+  font-size: 1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: #0027ff;
+  border-color: #0027ff;
+}
+
+.socialIcons {
+  font-family: 'Space Grotesk', sans-serif;
+  display: flex;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+.socialIcons a {
+  color: #fff;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.socialIcons a:hover {
+  color: #0027ff;
+  transform: translateY(-5px);
+}
+
+.socialIcons img {
+  width: 24px;
+  height: 24px;
+}
+
+/* ===================== */
+/* АДАПТИВ */
+/* ===================== */
+
+/* 1440px — большие ноутбуки */
+@media (max-width: 1440px) {
+  .logo {
+    font-size: 16rem;
+  }
+  .line {
+    width: 700px;
+  }
+}
+
+/* 1280px — стандартные ноутбуки */
+@media (max-width: 1280px) {
+  .logo {
+    font-size: 14rem;
+  }
+  .line {
+    width: 600px;
+  }
+}
+
+/* 1024px — планшеты */
+@media (max-width: 1024px) {
+  .content {
+    gap: 40px;
+    padding-top: 50px;
+  }
+  .logo {
+    font-size: 12rem;
+    margin-bottom: -50px;
+  }
+  .textContainer {
+    gap: 30px;
+  }
+  .textMain,
+  .textReplay {
+    font-size: 1.2rem;
+  }
+  .line {
+    width: 500px;
+  }
+  .ctaButton {
+    font-size: 0.9rem;
+    padding: 12px 24px;
+  }
+  .socialIcons {
+    gap: 30px;
+  }
+}
+
+/* 768px — малые планшеты */
+@media (max-width: 767px) {
+  .content {
+    gap: 20px;
+    padding-top: 30px;
+  }
+  .logo {
+    font-size: 6rem;
+    margin-bottom: -20px;
+  }
+  .textContainer {
+    gap: 20px;
+  }
+  .textMain,
+  .textReplay {
+    font-size: 0.9rem;
+  }
+  .textWrapper {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .line {
+    width: 250px;
+  }
+  .ctaButton {
+    font-size: 0.8rem;
+    padding: 10px 20px;
+  }
+  .socialIcons {
+    gap: 20px;
+  }
+  .socialIcons img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* 480px — смартфоны */
+@media (max-width: 480px) {
+  .logo {
+    font-size: 4rem;
+    margin-bottom: -10px;
+  }
+  .textMain,
+  .textReplay {
+    font-size: 0.8rem;
+  }
+  .line {
+    width: 180px;
+  }
+  .ctaButton {
+    font-size: 0.7rem;
+    padding: 8px 16px;
+  }
+  .socialIcons {
+    gap: 15px;
+  }
+  .socialIcons img {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* 360px — маленькие телефоны */
+@media (max-width: 360px) {
+  .logo {
+    font-size: 3rem;
+  }
+  .textMain,
+  .textReplay {
+    font-size: 0.7rem;
+  }
+  .line {
+    width: 150px;
+  }
+  .ctaButton {
+    font-size: 0.6rem;
+    padding: 6px 12px;
+  }
+  .socialIcons img {
+    width: 16px;
+    height: 16px;
+  }
+}

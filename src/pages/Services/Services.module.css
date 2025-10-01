@@ -1,0 +1,327 @@
+.services {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 80px 5vw;
+  background: linear-gradient(to right, #061b38 0%, #080f19 50%, #061b38 100%);
+  color: #fff;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.animatedBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(13, 18, 28, 0.9),
+    rgba(39, 51, 74, 0.4)
+  );
+  background-size: 100% 2%;
+  animation: bg-mist 30s infinite ease-in-out;
+  z-index: 0;
+}
+
+@keyframes bg-mist {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.contentWrapper {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.leftColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 200px;
+  text-align: left;
+}
+
+.rightColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 200px;
+  text-align: right;
+}
+
+.centerColumn {
+  flex: 0 0 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 140px;
+  position: relative;
+}
+
+.verticalLineTop {
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.8) 0%,
+    transparent 100%
+  );
+  transform-origin: top;
+  height: 1500px;
+  background-size: 50% 460px; /* маленький градиент, как капля */
+  animation: dripDown 3s linear infinite;
+}
+
+/* Анимация градиента капли вниз */
+@keyframes dripDown {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 400px;
+  }
+}
+
+/* Анимация градиента капли вверх */
+@keyframes dripUp {
+  0% {
+    background-position: 0 400px;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.verticalLineBottom {
+  position: absolute;
+  bottom: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.8) 0%,
+    transparent 100%
+  );
+  transform-origin: bottom;
+  height: 1500px;
+  background-size: 50% 480px; /* маленький градиент, как капля */
+  animation: dripUp 3s linear infinite;
+}
+
+.line {
+  width: 60px;
+  height: 2px;
+  background-color: #0027ff;
+  margin-bottom: 5px;
+}
+
+.centerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 124px;
+}
+
+.servicesTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.2);
+  font-family: 'Space Grotesk', sans-serif;
+  margin: 0;
+}
+
+.icon {
+  width: 100px;
+  height: auto;
+  margin-top: 10px;
+}
+
+.textBlock {
+  margin-bottom: 30px;
+}
+
+.highlight {
+  color: rgba(0, 39, 255, 0.6);
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-transform: none;
+  margin-bottom: 20px;
+  word-wrap: break-word;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin: 0 0 30px 0;
+  font-weight: 400;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.description {
+  font-size: 1rem;
+  color: #b0b0b0;
+  line-height: 1.6;
+}
+
+/* ===========================
+   Адаптив
+   =========================== */
+
+/* Очень широкие экраны (1920px+) */
+@media (min-width: 1920px) {
+  .contentWrapper {
+    max-width: 1800px;
+    gap: 250px;
+  }
+  .leftColumn,
+  .rightColumn {
+    gap: 250px;
+  }
+  .centerColumn {
+    padding-top: 180px;
+  }
+  .servicesTitle {
+    font-size: 3rem;
+  }
+  .icon {
+    width: 120px;
+  }
+}
+
+/* Средние десктопы 1440px */
+@media (max-width: 1440px) {
+  .contentWrapper {
+    gap: 180px;
+  }
+  .leftColumn,
+  .rightColumn {
+    gap: 180px;
+  }
+  .centerColumn {
+    padding-top: 160px;
+  }
+  .servicesTitle {
+    font-size: 2.8rem;
+  }
+  .icon {
+    width: 110px;
+  }
+}
+
+/* Лаптопы 1024px */
+@media (max-width: 1024px) {
+  .contentWrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+  .leftColumn,
+  .rightColumn {
+    width: 100%;
+    gap: 40px;
+    text-align: center;
+  }
+  .centerColumn {
+    padding-top: 0;
+    margin-bottom: 50px;
+  }
+  .verticalLineTop,
+  .verticalLineBottom {
+    display: none;
+  }
+  .servicesTitle {
+    font-size: 2.5rem;
+  }
+  .icon {
+    width: 90px;
+  }
+}
+
+/* Планшеты 767px */
+@media (max-width: 767px) {
+  .services {
+    padding: 50px 3vw;
+  }
+  .servicesTitle {
+    font-size: 2.2rem;
+  }
+  .icon {
+    width: 80px;
+  }
+  .textBlock {
+    margin-bottom: 20px;
+  }
+  .highlight {
+    font-size: 1rem;
+  }
+  .title {
+    font-size: 1.3rem;
+  }
+  .description {
+    font-size: 0.95rem;
+  }
+}
+
+/* Мобильные телефоны 550px */
+@media (max-width: 550px) {
+  .services {
+    padding: 40px 3vw;
+  }
+  .servicesTitle {
+    font-size: 2rem;
+  }
+  .icon {
+    width: 70px;
+  }
+  .highlight {
+    font-size: 0.95rem;
+  }
+  .title {
+    font-size: 1.2rem;
+  }
+  .description {
+    font-size: 0.9rem;
+  }
+}
+
+/* Очень маленькие телефоны 400px */
+@media (max-width: 400px) {
+  .services {
+    padding: 30px 2vw;
+  }
+  .servicesTitle {
+    font-size: 1.8rem;
+  }
+  .icon {
+    width: 60px;
+  }
+  .highlight {
+    font-size: 0.9rem;
+  }
+  .title {
+    font-size: 1rem;
+  }
+  .description {
+    font-size: 0.85rem;
+  }
+}

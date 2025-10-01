@@ -1,0 +1,299 @@
+.works {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100vw;
+  min-height: 100vh;
+  height: 100vh;
+  background-color: #080f19;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Стили для сетки по умолчанию (для десктопов) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.projectItem {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.projectItem video,
+.projectItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Эффект глитча при наведении */
+.projectItem::after {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 5;
+  transition: background 0.3s ease;
+}
+
+.projectItem:hover::after {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 0, 0.1) 0%,
+    rgba(0, 0, 255, 0.1) 100%
+  );
+  animation: glitch-effect 0.3s infinite linear;
+}
+
+@keyframes glitch-effect {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-2px, 2px);
+  }
+  50% {
+    transform: translate(2px, -2px);
+  }
+  75% {
+    transform: translate(-2px, 2px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.projectThumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.5s ease;
+}
+
+.playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 60px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.playButton img {
+  width: 20px;
+  height: 20px;
+}
+
+.projectItem:hover .playButton {
+  background-color: rgba(0, 39, 255, 0.8);
+}
+
+.viewed .projectThumbnail {
+  filter: brightness(0.5) grayscale(100%);
+  opacity: 0.7;
+}
+
+/* Модальное окно */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  animation: modal-appear 0.3s ease-out;
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modalContent {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.videoPlayer {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  border-radius: 8px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: #ffffff;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 250;
+  transition: color 0.3s ease;
+}
+
+.closeButton:hover {
+  color: #0027ff;
+}
+
+/* Стили для кнопки "Больше проектов" */
+.loadMoreButtonContainer {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 50;
+}
+
+.loadMoreButton {
+  background-color: rgba(0, 39, 255, 0.2);
+  color: #ffffff;
+  border: 1px solid #0027ff;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.loadMoreButton:hover {
+  background-color: #0027ff;
+  box-shadow: 0 0 10px #0027ff;
+}
+
+/* ===========================
+   Адаптивность
+   =========================== */
+
+/* Очень большие экраны (1920px+) */
+@media (min-width: 1920px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+  .loadMoreButton {
+    font-size: 16px;
+    padding: 14px 24px;
+  }
+}
+
+/* Средние десктопы 1440px */
+@media (max-width: 1440px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+
+/* Планшеты 1024px */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+  .playButton {
+    width: 50px;
+    height: 50px;
+  }
+  .playButton img {
+    width: 18px;
+    height: 18px;
+  }
+  .closeButton {
+    font-size: 30px;
+    top: 10px;
+    right: 15px;
+  }
+  .loadMoreButton {
+    font-size: 13px;
+    padding: 10px 18px;
+  }
+}
+
+/* Мобильные устройства 767px */
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .playButton {
+    width: 40px;
+    height: 40px;
+  }
+  .playButton img {
+    width: 16px;
+    height: 16px;
+  }
+  .closeButton {
+    font-size: 25px;
+  }
+  .loadMoreButton {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+}
+
+/* Очень маленькие устройства 480px */
+@media (max-width: 480px) {
+  .playButton {
+    width: 35px;
+    height: 35px;
+  }
+  .playButton img {
+    width: 14px;
+    height: 14px;
+  }
+  .closeButton {
+    font-size: 22px;
+  }
+  .loadMoreButton {
+    font-size: 11px;
+    padding: 6px 14px;
+  }
+}

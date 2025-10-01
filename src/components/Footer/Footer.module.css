@@ -1,0 +1,309 @@
+/* src/components/Footer/Footer.module.css */
+
+.footer {
+  /* Текущий градиент */
+  background: linear-gradient(to bottom, #061b38 0%, #080f19 50%, #061b38 100%);
+  color: #ffffff;
+  /* Уменьшил верхний padding, чтобы поднять футер ближе к контенту */
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✅ ДОБАВЛЕНИЕ ВЕРХНЕЙ ЛИНИИ ЧЕРЕЗ PSEUDO-ЭЛЕМЕНТ */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+
+  /* ❌ Удалил конфликтный left: 0; */
+  width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  z-index: 10;
+  border-radius: 40px;
+}
+
+/* ✅ ДОБАВЛЕНИЕ НИЖНЕЙ ТЕМНОЙ ПОЛОСКИ (::after) */
+.footer::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; /* Установленная толщина полоски */
+  background-color: #080c188f;
+  z-index: 10;
+}
+
+/* --- ВЕРХНИЙ РЯД (Контакты) --- */
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 30px;
+  margin-bottom: 40px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contactGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  /* ✅ УМЕНЬШИЛ ОТСТУП СНИЗУ: чтобы линия была ближе к тексту */
+  padding-bottom: 15px;
+}
+
+/* ✅ СТИЛИЗАЦИЯ ОТДЕЛЬНОЙ ЦЕНТРИРОВАННОЙ ЛИНИИ */
+.contactGroup::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+
+  /* ДЛИНА ЛИНИИ: (200% было слишком много, установил на 90%) */
+  width: 200%;
+
+  height: 1px;
+
+  /* ЦЕНТРИРОВАНИЕ ЛИНИИ */
+  left: 50%;
+  transform: translateX(-50%);
+
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.heading {
+  /* ✅ НОВЫЙ РАЗМЕР И ЦВЕТ: для "Email", "Телефоны" */
+  font-size: 14px;
+  font-weight: 400;
+  color: #ffffff; /* Чистый белый */
+  opacity: 1; /* Убрал лишнюю полупрозрачность */
+
+  /* ✅ УВЕЛИЧЕННЫЙ ОТСТУП ПОД ЗАГОЛОВКОМ */
+  margin-bottom: 25px;
+}
+
+.contactLink {
+  /* ✅ НОВЫЙ РАЗМЕР И ЦВЕТ: для текста почты и номера */
+  font-size: 14px;
+  font-weight: 400;
+  color: #ffffffac; /* Чистый белый */
+
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contactLink:hover {
+  color: #0027ff;
+}
+
+/* --- Социальные иконки --- */
+.socialIcons {
+  display: flex;
+  /* ✅ УВЕЛИЧЕННЫЙ ОТСТУП МЕЖДУ ИКОНКАМИ */
+  gap: 50px;
+  justify-content: center;
+}
+
+.socialIcon {
+  /* ✅ РАЗМЕР ИКОНОК */
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s ease-out; /* Для будущей анимации */
+}
+
+.socialIcon:hover {
+  transform: translateY(-5px) scale(1.1); /* Простой эффект при наведении */
+}
+
+/* --- ГЛАВНЫЙ ЛОГОТИП (Анимация) --- */
+.mainLogoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* ✅ КОРРЕКЦИЯ ОТСТУПОВ: Поднимает логотип ближе к контактам */
+  margin-top: -50px;
+  margin-bottom: 120px;
+}
+
+/* ✅ НОВЫЙ КОНТЕЙНЕР ДЛЯ АНИМАЦИИ БУКВ */
+.logoTextWrapper {
+  display: flex;
+  /* overflow: hidden; убран, так как не нужен для анимации масштаба */
+}
+
+.mainLogoText {
+  font-family: 'Jura', sans-serif;
+  font-size: 20vw; /* Скорректированный размер */
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: lowercase;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  opacity: 0.1; /* Сделаем его очень прозрачным для фона */
+
+  /* ✅ Добавлено для Framer Motion */
+  display: block;
+}
+
+/* --- НИЖНИЙ РЯД (Копирайт) --- */
+.bottomRow {
+  display: flex;
+  justify-content: space-between;
+  height: 5px; /* Установите высоту равной высоте ::after */
+  align-items: center; /* Центрирует элементы по вертикали */
+  font-size: 14px;
+  opacity: 0.6;
+  position: relative;
+  z-index: 20; /* Выше, чем полоска ::after */
+}
+
+/* --- Адаптивность для планшетов --- */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .footer {
+    padding: 50px 30px 20px 30px;
+  }
+
+  .topRow {
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contactGroup {
+    padding-bottom: 12px;
+  }
+
+  .heading {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .contactLink {
+    font-size: 13px;
+  }
+
+  .socialIcons {
+    gap: 35px;
+  }
+
+  .mainLogoText {
+    font-size: 18vw;
+  }
+
+  .bottomRow {
+    font-size: 13px;
+  }
+}
+
+/* --- Адаптация для маленьких мобильных --- */
+@media (max-width: 480px) {
+  .footer {
+    padding: 40px 15px 10px 15px;
+  }
+
+  .topRow {
+    gap: 15px;
+  }
+
+  .contactGroup {
+    padding-bottom: 10px;
+  }
+
+  .heading {
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
+
+  .contactLink {
+    font-size: 12px;
+  }
+
+  .socialIcons {
+    gap: 20px;
+  }
+
+  .mainLogoContainer {
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+
+  .mainLogoText {
+    font-size: 40vw; /* Очень крупный на супер маленьких экранах */
+  }
+
+  .bottomRow {
+    font-size: 12px;
+  }
+}
+
+/* --- Адаптация для больших экранов (desktop XL) --- */
+@media (min-width: 1200px) {
+  .footer {
+    padding: 60px 80px 40px 80px;
+  }
+
+  .topRow {
+    max-width: 1100px;
+  }
+
+  .heading {
+    font-size: 16px;
+  }
+
+  .contactLink {
+    font-size: 15px;
+  }
+
+  .socialIcons {
+    gap: 60px;
+  }
+
+  .mainLogoText {
+    font-size: 15vw; /* Немного уменьшил, чтобы не слишком крупно */
+  }
+
+  .bottomRow {
+    font-size: 15px;
+  }
+}
+
+/* --- Очень большие экраны (Ultra Wide) --- */
+@media (min-width: 1600px) {
+  .footer {
+    padding: 80px 120px 60px 120px;
+  }
+
+  .topRow {
+    max-width: 1400px;
+  }
+
+  .heading {
+    font-size: 18px;
+  }
+
+  .contactLink {
+    font-size: 16px;
+  }
+
+  .socialIcons {
+    gap: 80px;
+  }
+
+  .mainLogoText {
+    font-size: 12vw; /* Сохраняем пропорцию */
+  }
+
+  .bottomRow {
+    font-size: 16px;
+  }
+}

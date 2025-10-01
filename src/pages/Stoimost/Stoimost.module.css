@@ -1,0 +1,272 @@
+.stoimost {
+  min-height: 100vh;
+  background: linear-gradient(to right, #061b38 0%, #080f19 50%, #061b38 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 0;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 80px;
+}
+
+/* --- Левая часть --- */
+.leftSide {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 500;
+  color: #ffffff;
+  opacity: 0.3; /* Вот как это нужно сделать */
+  margin: 0;
+  line-height: 1.2;
+}
+
+.underline {
+  width: 100px;
+  height: 2px;
+  background: #0027ff;
+  margin-bottom: 20px;
+}
+
+/* --- Центральная часть с анимациями --- */
+.centerSection {
+  flex: 1;
+  position: relative;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.logoSvg {
+  width: 120px;
+  height: 120px;
+  color: #ffffff;
+  opacity: 0.3; /* Вот как это нужно сделать */
+  animation: breathe 6s ease-in-out infinite;
+}
+
+/* Анимация для логотипа */
+@keyframes breathe {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Линии-капли */
+.lineTop {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, #0027ff 0%, transparent 100%);
+  animation: dripDown 3s linear infinite;
+  z-index: 5;
+}
+
+.lineBottom {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to top, #0027ff 0%, transparent 100%);
+  animation: dripUp 3s linear infinite;
+  z-index: 5;
+}
+
+@keyframes dripDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes dripUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+/* --- Правая часть --- */
+.rightSide {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.description {
+  font-family: Space Grotesk, sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #ffffff;
+  max-width: 500px;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* ===========================
+   Адаптив
+   =========================== */
+
+/* Очень широкие экраны (1920px+) */
+@media (min-width: 1920px) {
+  .content {
+    gap: 120px;
+  }
+  .title {
+    font-size: 48px;
+  }
+  .logoSvg {
+    width: 150px;
+    height: 150px;
+  }
+  .description {
+    font-size: 22px;
+    max-width: 600px;
+  }
+}
+
+/* Средние десктопы 1440px */
+@media (max-width: 1440px) {
+  .content {
+    gap: 100px;
+  }
+  .title {
+    font-size: 42px;
+  }
+  .logoSvg {
+    width: 140px;
+    height: 140px;
+  }
+  .description {
+    font-size: 20px;
+    max-width: 550px;
+  }
+}
+
+/* Лаптопы 1024px */
+@media (max-width: 1024px) {
+  .content {
+    flex-direction: column;
+    text-align: center;
+    gap: 60px;
+  }
+  .leftSide,
+  .rightSide {
+    align-items: center;
+    text-align: center;
+  }
+  .underline {
+    margin: 10px auto;
+  }
+  .centerSection {
+    height: 350px;
+    margin: 40px 0;
+  }
+}
+
+/* Планшеты 768px */
+@media (max-width: 768px) {
+  .title {
+    font-size: 36px;
+  }
+  .logoSvg {
+    width: 100px;
+    height: 100px;
+  }
+  .description {
+    font-size: 18px;
+    max-width: 400px;
+  }
+  .centerSection {
+    height: 300px;
+  }
+}
+
+/* Мобильные телефоны 550px */
+@media (max-width: 550px) {
+  .title {
+    font-size: 28px;
+  }
+  .logoSvg {
+    width: 80px;
+    height: 80px;
+  }
+  .description {
+    font-size: 16px;
+    max-width: 300px;
+  }
+  .content {
+    gap: 40px;
+  }
+}
+
+/* Очень маленькие телефоны 400px */
+@media (max-width: 400px) {
+  .title {
+    font-size: 24px;
+  }
+  .logoSvg {
+    width: 70px;
+    height: 70px;
+  }
+  .description {
+    font-size: 14px;
+    max-width: 260px;
+  }
+  .content {
+    gap: 30px;
+    padding: 0 1rem;
+  }
+}

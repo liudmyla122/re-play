@@ -1,0 +1,400 @@
+.etapy {
+  position: relative;
+  background: linear-gradient(to right, #061b38 0%, #080f19 50%, #061b38 100%);
+  color: white;
+  min-height: 91vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* --- Бегущая строка --- */
+.marqueeContainer {
+  width: max-content;
+  overflow: hidden;
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.marquee {
+  display: flex;
+  white-space: nowrap;
+}
+
+.marqueeContent {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marqueeItem {
+  font-family: 'Jura', sans-serif;
+  font-weight: 100;
+  font-size: 1.8rem;
+  color: #fff;
+  text-transform: lowercase;
+  margin-right: 60px;
+  flex-shrink: 0;
+}
+
+.marqueeLogo {
+  height: 1.8rem;
+  width: auto;
+  margin-right: 60px;
+}
+
+.marqueeDot {
+  width: 10px;
+  height: 10px;
+  background-color: #0027ff; /* синий кружок */
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-40%);
+  }
+}
+
+/* --- Основной контент --- */
+.contentWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3rem;
+  width: 100%;
+  max-width: 1400px;
+  position: relative;
+  z-index: 2;
+  flex-wrap: wrap;
+  padding-top: 80px;
+}
+
+.leftColumn,
+.rightColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  max-width: 400px;
+}
+
+.rightColumn {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.textBlock {
+  padding: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.flexHeader {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.flexHeaderMirror {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  justify-content: flex-end;
+}
+
+.number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: #0027ff;
+  margin: 0;
+  border: 2px solid #0027ff;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: #fff;
+  margin: 0;
+}
+
+.description {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.4;
+  margin-top: 24px;
+}
+
+/* --- Центральная колонка с линиями --- */
+.centerColumn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  z-index: 3;
+  margin-top: 240px;
+}
+
+/* Верхняя линия */
+.centerColumn::before {
+  content: '';
+  position: absolute;
+  bottom: 320px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 300px; /* сделай больше */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.4) 0%,
+    transparent 100%
+  );
+  background-size: 100% 200%;
+  animation: dripDown 3s linear infinite;
+}
+
+/* Нижняя линия */
+.centerColumn::after {
+  content: '';
+  position: absolute;
+  top: 250px; /* сдвинь вниз */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 400px; /* сделай больше */
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.4) 0%,
+    transparent 100%
+  );
+  background-size: 100% 200%;
+  animation: dripUp 3s linear infinite;
+}
+
+@keyframes dripDown {
+  0% {
+    background-position: 0 -100%;
+  }
+  100% {
+    background-position: 0 200%;
+  }
+}
+
+@keyframes dripUp {
+  0% {
+    background-position: 0 200%;
+  }
+  100% {
+    background-position: 0 -100%;
+  }
+}
+
+.servicesTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: -5px;
+  margin-top: 0;
+}
+
+.servicesTitleUnderline {
+  width: 30%;
+  height: 2px;
+  background-color: #0027ff;
+  margin: 0 auto;
+}
+
+.icon {
+  width: 120px;
+  height: 120px;
+  margin: 20px auto 60px;
+  object-fit: contain;
+  animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ===================== */
+/* АДАПТИВ */
+/* ===================== */
+
+/* 1440px */
+@media (max-width: 1440px) {
+  .servicesTitle {
+    font-size: 32px;
+  }
+  .icon {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* 1280px */
+@media (max-width: 1280px) {
+  .contentWrapper {
+    gap: 2rem;
+  }
+  .title {
+    font-size: 22px;
+  }
+  .description {
+    font-size: 0.95rem;
+  }
+}
+
+/* 1024px — планшеты */
+@media (max-width: 1024px) {
+  .contentWrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+  }
+  .leftColumn,
+  .rightColumn {
+    max-width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+  .flexHeaderMirror,
+  .flexHeader {
+    justify-content: center;
+  }
+  .centerColumn {
+    margin-top: 120px;
+  }
+  .servicesTitle {
+    font-size: 28px;
+  }
+}
+
+/* 768px — малые планшеты */
+@media (max-width: 768px) {
+  .marqueeContainer {
+    height: 60px;
+    margin-bottom: 30px;
+  }
+  .marqueeItem {
+    font-size: 1.2rem;
+    margin-right: 30px;
+  }
+  .marqueeLogo {
+    height: 1.2rem;
+    margin-right: 30px;
+  }
+  .number {
+    font-size: 1rem;
+    width: 2rem;
+    height: 2rem;
+  }
+  .title {
+    font-size: 20px;
+  }
+  .description {
+    font-size: 0.9rem;
+    margin-top: 16px;
+  }
+  .icon {
+    width: 80px;
+    height: 80px;
+    margin: 20px auto 40px;
+  }
+}
+
+/* 480px — смартфоны */
+@media (max-width: 480px) {
+  .marqueeContainer {
+    height: 50px;
+    border-width: 3px;
+  }
+  .marqueeItem {
+    font-size: 1rem;
+    margin-right: 20px;
+  }
+  .number {
+    font-size: 0.9rem;
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+  .title {
+    font-size: 18px;
+  }
+  .description {
+    font-size: 0.8rem;
+  }
+  .servicesTitle {
+    font-size: 22px;
+  }
+  .icon {
+    width: 60px;
+    height: 60px;
+  }
+  .centerColumn {
+    margin-top: 60px;
+  }
+}
+
+/* 360px — маленькие телефоны */
+@media (max-width: 360px) {
+  .marqueeItem {
+    font-size: 0.85rem;
+    margin-right: 15px;
+  }
+  .number {
+    font-size: 0.8rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .title {
+    font-size: 16px;
+  }
+  .description {
+    font-size: 0.75rem;
+  }
+  .servicesTitle {
+    font-size: 18px;
+  }
+  .icon {
+    width: 50px;
+    height: 50px;
+  }
+}

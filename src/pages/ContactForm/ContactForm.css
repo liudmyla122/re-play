@@ -1,0 +1,721 @@
+/* =========================================================
+   ContactForm.css — Финальная версия: Один в один по скриншоту
+   ========================================================= */
+
+:root {
+  /* Цветовая палитра */
+  --accent: #1e6bff;
+  --input-bg: #0f1622;
+  --text: #dfe6f2;
+  --placeholder: rgba(255, 255, 255, 0.4);
+  --field-border: rgba(255, 255, 255, 0.1);
+  --timeline-label: rgba(255, 255, 255, 0.45);
+  --timeline-number-border: rgba(255, 255, 255, 0.2);
+  --danger: #ff4d4f;
+}
+
+/* СЕКЦИЯ-ОБЁРТКА */
+.kontakty-section {
+  background: linear-gradient(to right, #061b38 0%, #080f19 50%, #061b38 100%);
+  color: var(--text);
+  padding: 80px 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.kontakty-header {
+  font-size: 36px;
+  font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif;
+  color: rgba(134, 132, 132, 0.7);
+  border-bottom: none;
+  padding-top: 15px;
+  position: relative;
+  display: block;
+  max-width: 1200px;
+  margin: 0 auto 120px;
+  text-align: center; /* Центрируем заголовок */
+}
+
+/* Короткая синяя полоса, теперь сверху */
+.kontakty-header::before {
+  /* Изменили с ::after на ::before */
+  content: '';
+  position: absolute;
+  top: 0; /* Переносим полосу на самый верх */
+  left: 39%;
+  width: 70px; /* Короткая синяя полоса */
+  height: 2px;
+  background: #0027ff; /* Синий цвет */
+}
+
+.kontakty-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* =================================
+     ===== left timeline (Таймлайн) =====
+     ================================= */
+.kontakty-timeline {
+  font-size: 14px;
+  position: sticky;
+  top: 80px;
+  padding-top: 0;
+  margin-top: -60px; /* Попробуйте -60px, чтобы компенсировать отступ H1 */
+}
+
+.logo-left {
+  font-family: 'Jura', sans-serif;
+  font-size: 50px;
+  color: var(--text);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-bottom: 30px;
+  opacity: 0.6;
+  padding-left: 28px; /* Начните с 50px и корректируйте, пока не будет по центру */
+  position: relative;
+  display: inline-block; /* Убеждаемся, что span ведет себя как блок */
+  text-decoration: none;
+}
+
+.logo-left::after {
+  content: '';
+  position: absolute;
+  width: 250px; /* Например, 250px, чтобы было длиннее текста */
+  height: 1px;
+  bottom: -10px;
+  left: 0;
+  background: currentColor; /* Использует цвет текста (.logo-left) */
+  opacity: 0.6;
+}
+
+.timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  z-index: 2;
+  padding: 8px 0;
+  color: var(--timeline-label);
+  transition: color 0.3s;
+  /* ✅ УВЕЛИЧИВАЕМ ВЕРТИКАЛЬНЫЕ ОТСТУПЫ */
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
+
+.timeline-item.active {
+  color: var(--text);
+}
+
+.step-number {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--timeline-number-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--timeline-label);
+  background: transparent;
+  flex-shrink: 0;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  z-index: 3; /* Поверх линии */
+}
+
+.timeline-item.active .step-number {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+}
+
+.vertical-line {
+  position: absolute;
+  left: 14px;
+  top: 130px; /* Начинаем после первого элемента */
+  bottom: auto;
+  width: 1px;
+  height: 100px; /* Высота линии между элементами */
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 1;
+}
+
+/* Позиционируем каждую линию между соответствующими элементами */
+.vertical-line:nth-of-type(1) {
+  top: 0px; /* После первого элемента */
+}
+
+.vertical-line:nth-of-type(2) {
+  top: 320px; /* После второго элемента */
+}
+
+.vertical-line:nth-of-type(3) {
+  top: 420px; /* После третьего элемента */
+}
+
+.step-label {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* =================================
+     ===== right form (Форма) =====
+     ================================= */
+
+.kontakty-title {
+  color: #0027ff;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif; /* <-- Новый шрифт */
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.kontakty-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+
+  /* ✅ ИЗМЕНЕНИЕ: Уменьшаем левый сайдбар с 220px до 180px */
+  grid-template-columns: 350px 1fr;
+
+  gap: 60px;
+}
+
+.kontakty-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.field-label {
+  position: static;
+  display: block; /* ✅ ИЗМЕНЕНИЕ: Убираем flex/меняем на block */
+  top: -8px;
+  left: 10px;
+  font-size: 14px;
+  font-family: 'Space Grotesk', sans-serif; /* Используйте ваш желаемый шрифт */
+  color: #ffffff;
+  background: var(--bg);
+  padding: 0 4px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Inputs */
+.input {
+  height: 48px;
+  padding: 10px 14px;
+  background: transparent;
+  border: 1px solid var(--field-border);
+  border-radius: 4px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input::placeholder {
+  color: var(--placeholder);
+  font-size: 14px;
+}
+.input:focus {
+  border-color: var(--accent);
+}
+.input.error {
+  border-color: var(--danger);
+}
+
+/* Textarea */
+.textarea {
+  min-height: 140px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  resize: none;
+  background: transparent;
+  border: 1px solid var(--field-border);
+  color: var(--text);
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+.textarea:focus {
+  border-color: var(--accent);
+}
+.textarea-counter {
+  position: absolute;
+  bottom: 8px;
+  right: 14px;
+  font-size: 12px;
+  color: var(--placeholder);
+}
+
+.field-error {
+  color: var(--danger);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* ===== Custom Select (Тип проекта) ===== */
+.custom-select-wrapper {
+  width: 100%;
+  position: relative;
+  z-index: 20; /* Чтобы список был над другими элементами */
+}
+.select-head {
+  height: 48px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  color: var(--text);
+  border-radius: 4px;
+  padding: 10px 14px;
+  border: 1px solid var(--field-border);
+  cursor: pointer;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+.select-head:hover {
+  border-color: var(--accent);
+}
+.select-head.error {
+  border-color: var(--danger);
+}
+.select-list {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  right: 0;
+  background: var(--input-bg);
+  border: 1px solid var(--field-border);
+  border-radius: 4px;
+  padding: 4px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  max-height: 260px;
+  overflow-y: auto;
+}
+.select-option {
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+.select-option:hover {
+  background: rgba(30, 107, 255, 0.1);
+}
+.select-option.active {
+  background: var(--accent);
+  color: white;
+}
+
+/* =================================
+     ===== uploads area (Ваши референсы) =====
+     ================================= */
+
+.references-instruction-top {
+  font-size: 14px;
+  color: var(--text); /* Основной цвет текста */
+  margin-bottom: 10px; /* Отступ до блока референсов */
+  margin-top: 20px; /* Отступ от заголовка "Ваши референсы" */
+  font-weight: 500;
+}
+
+.section-references {
+  padding: 20px;
+  border: 1px solid var(--field-border);
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.references-instruction {
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: -29px;
+}
+
+.video-link-label {
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.video-link-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.video-link-container .input {
+  width: 100%;
+  height: 40px;
+}
+
+.uploads-block {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.upload-wrapper {
+  position: relative;
+  width: 120px;
+}
+.upload-box {
+  width: 120px;
+  height: 80px;
+  border-radius: 4px;
+  border: 1px solid var(--field-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--input-bg);
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.2s;
+}
+.upload-box:hover {
+  border-color: var(--accent);
+}
+
+.plus-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.plus-icon .plus {
+  color: rgba(255, 255, 255, 0.22);
+  font-size: 30px;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+.upload-box:hover .plus-icon .plus {
+  transform: scale(1.1);
+}
+
+/* Иконка скрепки в углу */
+.clip-icon-wrapper {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 24px;
+  height: 24px;
+  background: rgba(13, 22, 38, 0.85);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.clip-icon {
+  font-size: 14px;
+}
+
+.upload-box:not(.has-image) .clip-icon {
+  color: var(--placeholder);
+}
+.upload-box.has-image .clip-icon {
+  color: var(--accent);
+}
+.upload-box.has-image .clip-icon-wrapper:hover {
+  background: rgba(255, 77, 79, 0.8); /* Красный при удалении */
+}
+.upload-box.has-image .clip-icon-wrapper:hover .clip-icon {
+  color: white;
+}
+
+.preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.8);
+}
+.hidden-file {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* =================================
+     ===== Captcha + Submit =====
+     ================================= */
+
+.bottom-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.captcha-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  flex-grow: 0 !important; /* Не растягиваться */
+  flex-shrink: 0 !important; /* Не сжиматься */
+  flex-basis: auto !important; /* Автоматическая базовая ширина */
+  min-width: 280px;
+  min-height: 48px; /* равняем по кнопке */
+}
+
+.captcha-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.captcha-inner input[type='checkbox'] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid var(--field-border);
+  background: var(--input-bg);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.captcha-inner input[type='checkbox']:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.captcha-inner input[type='checkbox']:checked::after {
+  content: '✓';
+  position: absolute;
+  top: -2px;
+  left: 4px;
+  color: var(--bg);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.captcha-inner.error input[type='checkbox'] {
+  border-color: var(--danger);
+}
+.captcha-text {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.recaptcha-placeholder {
+  width: 120px;
+  height: 48px;
+  border: 1px solid var(--field-border);
+  border-radius: 4px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--placeholder);
+  background: var(--input-bg);
+}
+
+/* ✅ НОВЫЙ СТИЛЬ ДЛЯ ИКОНКИ */
+.recaptcha-icon {
+  font-size: 12px; /* Размер иконки */
+  color: var(--accent); /* Цвет акцента, если иконка не эмодзи */
+  margin-bottom: 2px; /* Небольшой отступ от текста */
+  line-height: 1; /* Убрать лишний пробел, если это эмодзи */
+}
+
+.recap-logo-text {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 12px;
+}
+
+/* Кнопка "Отправить" */
+.submit-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  flex-grow: 0 !important; /* Не растягиваться */
+  flex-shrink: 0 !important; /* Не сжиматься */
+  flex-basis: auto !important;
+}
+
+.btn-submit {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 12px 32px;
+  border-radius: 8px;
+  border: 1px solid #0027ff; /* Добавляем границу */
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 400;
+  cursor: pointer;
+  min-width: 180px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-submit:hover:not([disabled]) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-submit[disabled] {
+  cursor: not-allowed;
+}
+
+.agreement-text {
+  font-size: 11px;
+  color: var(--placeholder);
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+  line-height: 1.5;
+}
+
+.agreement-text .link {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+/* Сообщение об успехе/ошибке */
+.form-message {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.form-message.success {
+  color: #28a745;
+  background: rgba(40, 167, 69, 0.1);
+}
+
+.form-message.error {
+  color: var(--danger);
+  background: rgba(255, 77, 79, 0.1);
+}
+
+/* ========== АДАПТИВ ========== */
+
+/* Планшеты (от 768px до 991px) */
+@media (min-width: 768px) {
+  .kontakty-inner {
+    grid-template-columns: 250px 1fr;
+    gap: 40px;
+  }
+  .kontakty-header {
+    margin-bottom: 60px;
+  }
+}
+
+/* Ноутбуки и десктопы (от 992px до 1200px) */
+@media (min-width: 992px) {
+  .kontakty-inner {
+    grid-template-columns: 300px 1fr;
+    gap: 50px;
+  }
+}
+
+/* Очень большие экраны (1600px+) */
+@media (min-width: 1600px) {
+  .kontakty-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    grid-template-columns: 400px 1fr;
+    gap: 80px;
+  }
+  .kontakty-header {
+    font-size: 48px;
+  }
+}
+
+/* Смартфоны средние (481px–767px) */
+@media (max-width: 767px) and (min-width: 481px) {
+  .kontakty-header {
+    font-size: 24px;
+  }
+  .timeline-list {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .row.two {
+    grid-template-columns: 1fr;
+  }
+  .upload-wrapper {
+    width: 48%;
+  }
+}
+
+/* Маленькие телефоны (до 480px) */
+@media (max-width: 480px) {
+  .kontakty-header {
+    font-size: 20px;
+  }
+  .kontakty-inner {
+    gap: 20px;
+  }
+  .input,
+  .textarea,
+  .select-head {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+  .btn-submit {
+    font-size: 13px;
+    padding: 10px 20px;
+    min-width: auto;
+  }
+  .captcha-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    min-width: auto;
+  }
+  .upload-wrapper {
+    width: 100%;
+  }
+}
+
+/* Ультра-маленькие экраны (до 360px) */
+@media (max-width: 360px) {
+  .kontakty-header {
+    font-size: 18px;
+  }
+  .btn-submit {
+    width: 100%;
+    padding: 10px;
+  }
+}

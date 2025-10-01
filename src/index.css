@@ -1,0 +1,12 @@
+/* Глобальный сброс стилей и установка шрифта для всего сайта */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif; /* Шрифт Space Grotesk Regular */
+  color: #ffffff; /* Белый текст по умолчанию */
+  background-color: #080f19; /* Тёмный фон для согласованности */
+}

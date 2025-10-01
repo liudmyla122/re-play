@@ -1,0 +1,353 @@
+.header {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  background-color: #080f19;
+  padding: 0 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  transition: height 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo {
+  height: 60px;
+  width: 50px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.logoImage {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 25px;
+}
+
+.navLink {
+  font-size: 18px;
+  font-weight: 400;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px;
+  transition: color 0.3s ease, transform 0.25s ease;
+  position: relative;
+  border: none;
+  cursor: pointer;
+}
+
+.navLink::before {
+  content: '';
+  position: absolute;
+  bottom: 0; /* Изменил с top: 0 на bottom: 0 для лучшего отображения подчеркивания */
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
+.navLink:hover {
+  color: #0027ff;
+  transform: translateY(-2px);
+}
+
+.navLink:hover::before {
+  background: #0027ff;
+}
+
+/* 🔵 Класс для активной ссылки (подсветка синим) */
+.active {
+  color: #0027ff !important;
+  transform: translateY(-2px);
+  font-weight: 600; /* Добавил, чтобы подчеркнуть активный пункт */
+}
+
+.active::before {
+  background: #0027ff;
+}
+
+.ctaButton {
+  height: 50px;
+  width: 150px;
+  background-color: #0027ff;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: box-shadow 0.3s ease;
+  padding: 18px 10px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.ctaButton:hover {
+  box-shadow: 0 0 10px #0027ff;
+}
+
+.languageSwitcher {
+  position: relative;
+  margin-left: 95px;
+}
+
+.languageButton {
+  font-size: 18px;
+  color: #ffffff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.arrowIcon {
+  height: 10px;
+  margin-left: 5px;
+  width: auto;
+  object-fit: contain;
+}
+
+.languageButton:hover {
+  color: #cccccc;
+}
+
+.languageList {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #080f19;
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  border: 0.1px solid #ffffff;
+  border-radius: 6px; /* Добавил скругление */
+  z-index: 10;
+}
+
+.languageList li {
+  padding: 5px 10px;
+  font-size: 18px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.languageList li:hover {
+  background-color: #0027ff;
+}
+
+.burgerButton {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.burgerButton img {
+  height: 24px;
+  width: auto;
+}
+
+/* ===================== */
+/* АДАПТИВ */
+/* ===================== */
+
+/* 📺 Очень большие экраны (1600px+) */
+@media (min-width: 1600px) {
+  .header {
+    height: 120px;
+    padding: 0 80px;
+  }
+  .logo {
+    height: 80px;
+    width: 70px;
+  }
+  .ctaButton {
+    height: 60px;
+    width: 180px;
+    font-size: 18px;
+  }
+  .navLink {
+    font-size: 20px;
+  }
+}
+
+/* 💻 Планшеты и небольшие ноутбуки (1200px–1025px) */
+@media (max-width: 1200px) and (min-width: 1025px) {
+  .navList {
+    gap: 20px;
+  }
+  .ctaButton {
+    height: 45px;
+    width: 130px;
+    font-size: 15px;
+  }
+  .languageSwitcher {
+    margin-left: 60px;
+  }
+}
+
+/* 📱 Планшеты (1024px и меньше) */
+@media (max-width: 1024px) {
+  .header {
+    height: 80px;
+    padding: 0 20px;
+  }
+  .logo {
+    height: 50px;
+    width: 40px;
+  }
+  .navList {
+    gap: 15px;
+  }
+  .navLink {
+    font-size: 16px;
+    padding: 8px;
+  }
+  .ctaButton {
+    height: 40px;
+    width: 120px;
+    font-size: 14px;
+    padding: 12px 8px;
+  }
+  .languageSwitcher {
+    margin-left: 50px;
+  }
+  .languageButton {
+    font-size: 16px;
+  }
+  .languageList li {
+    font-size: 16px;
+  }
+}
+
+/* 📱 Смартфоны (до 767px) */
+@media (max-width: 767px) {
+  .header {
+    height: 60px;
+    padding: 0 15px;
+    justify-content: space-between;
+  }
+  .logo {
+    height: 30px;
+    width: 20px;
+  }
+  .nav {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #080f19;
+    z-index: 10;
+  }
+  .mobileOpen {
+    display: block;
+  }
+  .navList {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+  .navLink {
+    font-size: 14px;
+    padding: 10px 0;
+    display: block;
+  }
+  .ctaButton {
+    height: 35px;
+    width: 100px;
+    font-size: 12px;
+    padding: 10px 6px;
+    margin-left: auto;
+  }
+  .languageSwitcher {
+    margin-left: 20px;
+  }
+  .languageButton {
+    font-size: 14px;
+  }
+  .arrowIcon {
+    height: 8px;
+  }
+  .languageList {
+    right: auto;
+    left: 0;
+  }
+  .languageList li {
+    font-size: 14px;
+  }
+  .burgerButton {
+    display: block;
+  }
+}
+
+/* 📱 Маленькие телефоны (до 480px) */
+@media (max-width: 480px) {
+  .header {
+    padding: 0 10px;
+  }
+  .navLink {
+    font-size: 13px;
+  }
+  .ctaButton {
+    width: 90px;
+    height: 32px;
+    font-size: 11px;
+  }
+  .languageButton {
+    font-size: 13px;
+  }
+}
+
+/* 📱 Ультра-маленькие телефоны (до 360px) */
+@media (max-width: 360px) {
+  .header {
+    padding: 0 5px;
+  }
+  .logo {
+    height: 25px;
+    width: 18px;
+  }
+  .navLink {
+    font-size: 12px;
+  }
+  .ctaButton {
+    width: 80px;
+    height: 28px;
+    font-size: 10px;
+    padding: 8px 4px;
+  }
+  .languageButton {
+    font-size: 12px;
+  }
+}
