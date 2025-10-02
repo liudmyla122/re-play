@@ -48,7 +48,7 @@ const Hero = () => {
       <div className={styles.videoContainer}>
         <video
           className={styles.video}
-          src="/videos/Video-hero.mp4"
+          src="./videos/Video-hero.mp4"
           autoPlay
           muted
           loop
